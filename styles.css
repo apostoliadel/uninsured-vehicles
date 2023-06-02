@@ -25,6 +25,7 @@ td {
 }
 
 
+
 /* Styles for labels */
 label {
     display: inline-block;
@@ -44,12 +45,15 @@ select {
 
 /* Buttons */
 .button {
-    padding: 8px 15px;
-    color: #fff;
+    padding: 12px 20px;
+    margin: 10px;
     border: none;
-    cursor: pointer;
     border-radius: 5px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
     background: #49876b;
+    cursor: pointer;
 }
 
 .button:hover {
@@ -65,3 +69,15 @@ select {
 .warning::before {
     content: "* ";
 }
+
+/* Message Box */
+.message-box {
+	margin-top: 25px;
+	width: 50%;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+
