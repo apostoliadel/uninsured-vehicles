@@ -80,4 +80,9 @@ select {
     margin-bottom: 20px;
 }
 
+.message-box p{
+	margin-left: 16px;
+    margin-right: 16px;
+}
+
 

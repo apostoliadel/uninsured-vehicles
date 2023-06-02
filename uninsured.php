@@ -88,30 +88,29 @@ if (isset($_POST['clear'])) {
 			$generatedMessage .= "and fines ranging from €100 to €500 can be imposed. ";
 			$generatedMessage .= "To avoid any penalties, please ensure that the vehicle is immediately insured or declared immobile. <br><br>";
 			$generatedMessage .= "For any assistance, please contact us at 2221000000 or 2221000000. <br><br>";
-			$generatedMessage .= "&gt;&gt; (The last contract for the vehicle was at €" . $renewalPrice;
+			$generatedMessage .= "&gt;&gt; The last contract for the vehicle was at €" . $renewalPrice;
 
 			// Switch statement for the contract duration
 			switch ($duration) {
 				case "45":
-					$generatedMessage .= " for " . $duration . " days.)";
+					$generatedMessage .= " for " . $duration . " days.";
 					break;
 				case "1":
-					$generatedMessage .= " for " . $duration . " month.)";
+					$generatedMessage .= " for " . $duration . " month.";
 					break;
 				case "3":
 				case "6":
-					$generatedMessage .= " for " . $duration . " months.)";
+					$generatedMessage .= " for " . $duration . " months.";
 					break;
 				case "12":
-					$generatedMessage .= " for 1 year.)";
+					$generatedMessage .= " for 1 year.";
 					break;
 			}
 			$generatedMessage .= "</div></p>";
-
+			
 		}
 	}
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -128,66 +127,69 @@ if (isset($_POST['clear'])) {
 <!-- User input form -->
 <form name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
-		<table>
+	<table>
+	
+		<tr>
 		
-			<tr>
+			<!-- Client's Name -->
+			<td>
+				<label for="name">Client's Full Name:</label>
+				<input type="text" name="name" id="name" maxlength="60" class="input-text" value="<?php echo htmlspecialchars($name); ?>"><br>
+			</td>
 			
-				<!-- Client's Name -->
-				<td>
-					<label for="name">Client's Full Name:</label>
-					<input type="text" name="name" id="name" maxlength="60" class="input-text" value="<?php echo htmlspecialchars($name); ?>"><br>
-				</td>
-				
-				<!-- Contract Duration -->
-				<td>
-					<label for="duration">Contract Duration:</label>
-					<select name="duration" id="duration">
-						<option value="1" <?php if ($duration == "1") echo "selected"; ?>>1 month</option>
-						<option value="45" <?php if ($duration == "45") echo "selected"; ?>>45 days</option>
-						<option value="3" <?php if ($duration == "3") echo "selected"; ?>>3 months</option>
-						<option value="6" <?php if ($duration == "6") echo "selected"; ?>>6 months</option>
-						<option value="12" <?php if ($duration == "12") echo "selected"; ?>>1 year</option>
-					</select><br>
-				</td>
-			</tr>
+			<!-- Contract Duration -->
+			<td>
+				<label for="duration">Contract Duration:</label>
+				<select name="duration" id="duration">
+					<option value="1" <?php if ($duration == "1") echo "selected"; ?>>1 month</option>
+					<option value="45" <?php if ($duration == "45") echo "selected"; ?>>45 days</option>
+					<option value="3" <?php if ($duration == "3") echo "selected"; ?>>3 months</option>
+					<option value="6" <?php if ($duration == "6") echo "selected"; ?>>6 months</option>
+					<option value="12" <?php if ($duration == "12") echo "selected"; ?>>1 year</option>
+				</select><br>
+			</td>
+			
+		</tr>
 
-			<tr>
-			
-				<!-- License Plate -->
-				<td>
-					<label for="licensePlate">License Plate:</label>
-					<input type="text" name="licensePlate" id="licensePlate" pattern="[\p{L}]{3}[0-9]{4}" class="input-text"
-						   title="The registration number is wrong. The correct format is ABC1234"
-						   minlength="7" maxlength="7"
-						   oninput="this.value = this.value.toUpperCase();"
-						   value="<?php echo htmlspecialchars($licensePlate); ?>"><br>
-				</td>
-				
-				<!-- Vehicle Type -->
-				<td>
-					<label for="vehicleType">Vehicle Type:</label>
-					<input type="text" name="vehicleType" id="vehicleType" class="input-text" value="<?php echo htmlspecialchars($vehicleType); ?>"><br>
-				</td>
-			</tr>
-
-			<tr>
-			
-				<!-- Renewal Price -->
-				<td colspan="2">
-					<label for="renewalPrice">Renewal Price:</label>
-					<input type="text" name="renewalPrice" id="renewalPrice" pattern="[0-9,]+" class="input-text"
-						   title="Please only use the comma and numbers"
-						   value="<?php echo htmlspecialchars($renewalPrice); ?>"><br>
-				</td>
-			</tr>
-			
-		</table>
+		<tr>
 		
-		<!-- Generate Message Button -->
-		<input type="submit" name="submit" value="Generate Message" class="button">
-				
-		<!-- Clear Form Button -->
-		<input type="submit" name="clear" value="Clear Form" class="button">
+			<!-- License Plate -->
+			<td>
+				<label for="licensePlate">License Plate:</label>
+				<input type="text" name="licensePlate" id="licensePlate" pattern="[\p{L}]{3}[0-9]{4}" class="input-text"
+					title="The correct format is: ABC1234"
+					minlength="7" maxlength="7"
+					oninput="this.value = this.value.toUpperCase();"
+					value="<?php echo htmlspecialchars($licensePlate); ?>"><br>
+			</td>
+
+			
+			<!-- Vehicle Type -->
+			<td>
+				<label for="vehicleType">Vehicle Type:</label>
+				<input type="text" name="vehicleType" id="vehicleType" class="input-text" value="<?php echo htmlspecialchars($vehicleType); ?>"><br>
+			</td>
+			
+		</tr>
+		
+		<tr>
+		
+			<!-- Renewal Price -->
+			<td colspan="2">
+				<label for="renewalPrice">Renewal Price:</label>
+				<input type="text" name="renewalPrice" id="renewalPrice" pattern="[0-9,]+" class="input-text"
+					title="Please only use the comma and numbers"
+					value="<?php echo htmlspecialchars($renewalPrice); ?>"><br>
+			</td>
+		</tr>
+			
+	</table>
+		
+	<!-- Generate Message Button -->
+	<input type="submit" name="submit" value="Generate Message" class="button">
+			
+	<!-- Clear Form Button -->
+	<input type="submit" name="clear" value="Clear Form" class="button">
 	
 </form>
 
@@ -200,6 +202,6 @@ if (isset($_POST['clear'])) {
 		<?php if (isset($generatedMessage)) : ?>
 			<?php echo $generatedMessage; ?>
 		<?php endif; ?>
-		
+
 </body>
 </html>
